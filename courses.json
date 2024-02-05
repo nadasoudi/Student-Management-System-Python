@@ -1,0 +1,20 @@
+[
+  {
+    "code": "cad",
+    "name": "cad",
+    "max_degree": 100.0,
+    "credit_hours": 3
+  },
+  {
+    "code": "cs",
+    "name": "cs",
+    "max_degree": 100.0,
+    "credit_hours": 3
+  },
+  {
+    "code": "math2",
+    "name": "math1",
+    "max_degree": 100.0,
+    "credit_hours": 4
+  }
+]
