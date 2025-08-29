@@ -1,0 +1,65 @@
+OFFLINE BUILD/RUN PROOF
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.offline
+#1 transferring dockerfile: 360B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B 0.0s done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 ...
+
+#5 [1/6] FROM docker.io/library/python:3.11-slim@sha256:1d6131b5d479888b43200645e03a78443c7157efbdb730e6b48129740727c312
+#5 resolve docker.io/library/python:3.11-slim@sha256:1d6131b5d479888b43200645e03a78443c7157efbdb730e6b48129740727c312 0.2s done
+#5 DONE 0.2s
+
+#4 [internal] load build context
+#4 transferring context: 436.45kB 0.3s done
+#4 DONE 0.4s
+
+#6 [2/6] WORKDIR /app
+#6 CACHED
+
+#7 [3/6] COPY wheels/ /wheelhouse/
+#7 CACHED
+
+#8 [4/6] COPY requirements.txt .
+#8 CACHED
+
+#9 [5/6] RUN pip install --no-index --find-links=/wheelhouse -r requirements.txt
+#9 CACHED
+
+#10 [6/6] COPY . .
+#10 DONE 4.8s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 14.3s done
+#11 exporting manifest sha256:2ae5e617f9b50181f8f1688e136b3f40332cd3e57d1ad583aaef4b3500a4f8d5 0.0s done
+#11 exporting config sha256:0e79a56b41323836625edff00d07b0b53cd3d212c1ef5578eaa7549a51e18862 0.0s done
+#11 exporting attestation manifest sha256:7d6f96ad9ebb1ea6a6e4ec65e011517abcdabd566f18bcbe780ebf9fabccb6b8
+#11 exporting attestation manifest sha256:7d6f96ad9ebb1ea6a6e4ec65e011517abcdabd566f18bcbe780ebf9fabccb6b8 0.1s done
+#11 exporting manifest list sha256:f08340592b8b3744d723dbd0227df2a84580780d903e44d5278493d66c174db2 0.0s done
+#11 naming to docker.io/library/sms-offline:latest 0.0s done
+#11 unpacking to docker.io/library/sms-offline:latest
+#11 unpacking to docker.io/library/sms-offline:latest 2.9s done
+#11 DONE 17.6s
+[demo] wrote: /out/index.html
+[demo] wrote: /out/registrations_per_course.png
+ Volume in drive C is OS
+ Volume Serial Number is 227D-90AD
+
+ Directory of C:\Users\ZC\Documents\Aligner\codelr1\stundent\Student-Management-System-Python\out
+
+08/29/2025  11:22 AM    <DIR>          .
+08/29/2025  11:28 AM    <DIR>          ..
+08/29/2025  11:29 AM               374 index.html
+08/29/2025  11:29 AM            19,103 registrations_per_course.png
+               2 File(s)         19,477 bytes
+               2 Dir(s)   1,591,119,872 bytes free

@@ -1,3 +1,37 @@
+import argparse, os
+import matplotlib.pyplot as plt
+from results import load_students, load_courses, load_grades, calculate_gpa
+
+def run_demo(out_dir: str):
+    os.makedirs(out_dir, exist_ok=True)
+    students = load_students()
+    courses  = load_courses()
+    grades   = load_grades()
+
+    html_path = os.path.join(out_dir, "index.html")
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write("<!doctype html><meta charset='utf-8'><title>Student Summary</title>")
+        f.write("<h1>Student Management System — Demo</h1>")
+        f.write(f"<p>Students: {len(students)} | Courses: {len(courses)}</p>")
+        f.write("<table border='1' cellpadding='6'><tr><th>Code</th><th>Name</th><th>GPA</th></tr>")
+        for s in sorted(students, key=lambda x: x.get('code','')):
+            gpa = calculate_gpa(s.get('code'), grades, courses)
+            f.write(f"<tr><td>{s.get('code')}</td><td>{s.get('name')}</td><td>{gpa:.2f}</td></tr>")
+        f.write("</table>")
+
+    labels, counts = [], []
+    for c in sorted(courses, key=lambda x: x.get('code','')):
+        code = c.get('code'); labels.append(code)
+        counts.append(len(grades.get(code, {})))
+    plt.figure()
+    plt.bar(labels, counts)
+    plt.title("Registrations per Course")
+    plt.xlabel("Course"); plt.ylabel("# Students with grade")
+    chart_path = os.path.join(out_dir, "registrations_per_course.png")
+    plt.tight_layout(); plt.savefig(chart_path); plt.close()
+    print(f"[demo] wrote: {html_path}")
+    print(f"[demo] wrote: {chart_path}")
+
 from students import *
 from courses import *
 from grades import *
@@ -134,3 +168,14 @@ while True:
 
     else:
         print("Invalid choice. Please choose a number between 1 and 6.")
+if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--demo", action="store_true", help="Generate demo HTML & chart non-interactively")
+    p.add_argument("--out", default="./out", help="Output directory for demo artifacts")
+    args = p.parse_args()
+    if args.demo:
+        run_demo(args.out)
+    else:
+        # existing interactive/menu flow...
+        pass
+

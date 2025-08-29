@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+WORKDIR /app
+
+# Install vendored deps strictly offline
+COPY wheels/ /wheelhouse/
+COPY requirements.txt .
+RUN pip install --no-index --find-links=/wheelhouse -r requirements.txt
+
+# Copy app code and data
+COPY . .
+CMD ["python","main.py"]
